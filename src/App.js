@@ -1,25 +1,80 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import NavComponent from './components/navbarcomponent';
+import Carousel from './components/carousel';
+import LogInPage from './components/logInForm';
+import EnterPlants from './components/enterplants';
+import About from './components/about'
 
-function App() {
+import Create from './components/create';
+import Read from './components/read';
+import Update from './components/update';
+
+
+
+//keep last
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Link
+ } from 'react-router-dom';
+
+
+ export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <Router>
+      <NavComponent />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/logIn" element={<LogIn />} />
+        <Route path="/enterPlants" element={<EnterPlants />} />
+        <Route path="/update" element={<Update /> } /> 
+        <Route path="/read" element={<Read /> } /> 
+
+        
+
+        <Route path="/enterPlants" component={ Create } />
+        <Route path="/enterPlants" component={ Read } />
+        <Route path="/updates" element={<Update /> } /> 
+      </Routes>
+    </Router>
+  );
+}
+
+
+export function Home() {
+  return (
+    <div style={{ padding: 20 }}>
+      <Carousel />
     </div>
   );
 }
 
-export default App;
+export function AboutPage() {
+  return (
+    <About/>
+  )
+}
+
+export function LogIn() {
+  return (
+    <LogInPage />
+  )
+}
+
+export class Components extends React.Component {
+  render(){
+      return(
+      <div className = "container">
+          <div><NavComponent/></div>
+      </div>
+      );
+  }
+ }
+
+
+ 
+
+
+
